@@ -11,17 +11,13 @@ var src = {
     css:                  'public/css',
 
     HTMLpartial:          'private/partials/*.html',
-    portfolioHTMLpartial: 'private/partials/projects/*.html',
 
     //The main index. Target of serve.
     indexHTMLsrc:         'private/index.html',
     indexHTMLdest:        './public',
 
-    //this is the html template and destination.
-    HTMLsrc:              'private/html/**/*.html',
-    HTMLdest :            './public/html',
-
-    indexHTML:            'public/index.html' //actual target of gulp
+    //actual target of gulp
+    indexHTML:            'public/index.html'
 };
 
 // Static Server + watching scss/html files
@@ -34,8 +30,6 @@ gulp.task('serve', ['sass','fileinclude'], function() {
     gulp.watch(src.scss, ['sass']);
     gulp.watch(src.HTMLpartial, ['fileinclude']);
     gulp.watch(src.indexHTMLsrc, ['fileinclude']);
-    gulp.watch(src.HTMLsrc, ['fileinclude']);
-    gulp.watch(src.portfolioHTMLpartial, ['fileinclude']);
     gulp.watch(src.indexHTML).on('change', reload);
 });
 
@@ -56,15 +50,6 @@ gulp.task('fileinclude', function() {
       basepath: '@file'
     }))
     .pipe(gulp.dest(src.indexHTMLdest));
-
-
-  //build other files.
-  gulp.src(src.HTMLsrc)
-    .pipe(fileinclude({
-      prefix: '@@',
-      basepath: '@file'
-    }))
-    .pipe(gulp.dest(src.HTMLdest));
 
 });
 
