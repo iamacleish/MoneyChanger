@@ -20,7 +20,6 @@ h2{
 }
 h3{
   margin: 0;
-  text-decoration: none;
   font-size: 50px;
   font-weight: bold;
   display:inline;
@@ -50,6 +49,7 @@ section{
     border:0;
     background:none;
     display:inline-block;
+    cursor:pointer;
     h3{
       font-size: 65px;
       font-weight: bold;
@@ -57,5 +57,13 @@ section{
   }
   button:focus{
     outline:0;
+
   }
+  .hideConversionButton{
+    display:none;
+  }
+  .showConversionButton{
+    display:inline;
+  }
+
 }

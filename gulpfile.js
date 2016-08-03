@@ -3,6 +3,7 @@ var fileinclude = require('gulp-file-include');
 var browserSync = require('browser-sync');
 var sass        = require('gulp-sass');
 
+
 var reload      = browserSync.reload;
 
 var src = {
@@ -10,11 +11,18 @@ var src = {
     scss:                 'private/scss/*.scss',
     css:                  'public/css',
 
-    HTMLpartial:          'private/partials/*.html',
 
-    //The main index. Target of serve.
+
+    //The main index to be built into public.
     indexHTMLsrc:         'private/index.html',
     indexHTMLdest:        './public',
+
+    //partials used to build the index.
+    HTMLpartial:          'private/partials/*.html',
+
+    //js
+    indexJSsrc:           'private/js/*.js',
+    indexJSdest:          'public/js',
 
     //actual target of gulp
     indexHTML:            'public/index.html'
@@ -30,6 +38,7 @@ gulp.task('serve', ['sass','fileinclude'], function() {
     gulp.watch(src.scss, ['sass']);
     gulp.watch(src.HTMLpartial, ['fileinclude']);
     gulp.watch(src.indexHTMLsrc, ['fileinclude']);
+    gulp.watch(src.indexJSsrc, ['js']);
     gulp.watch(src.indexHTML).on('change', reload);
 });
 
@@ -51,6 +60,11 @@ gulp.task('fileinclude', function() {
     }))
     .pipe(gulp.dest(src.indexHTMLdest));
 
+});
+
+gulp.task('js', function(){
+  return gulp.src(src.indexJSsrc)
+    .pipe(gulp.dest(src.indexJSdest));
 });
 
 gulp.task('default', ['serve']);
