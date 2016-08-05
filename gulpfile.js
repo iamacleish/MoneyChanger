@@ -64,7 +64,8 @@ gulp.task('fileinclude', function() {
 
 gulp.task('js', function(){
   return gulp.src(src.indexJSsrc)
-    .pipe(gulp.dest(src.indexJSdest));
+    .pipe(gulp.dest(src.indexJSdest))
+    .pipe(reload({stream: true}));
 });
 
 gulp.task('default', ['serve']);
