@@ -1,3 +1,5 @@
+Click the '>' to toggle between USD and EUR rates.
+
 Create a webpage using any framework or tooling that you want that displays the
 conversion rates of USD (US Dollar) to the Euro in an interesting way.
 
